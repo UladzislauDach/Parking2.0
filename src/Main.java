@@ -1,5 +1,15 @@
+import CarData.Colour;
+import CarData.GearBox;
+import CarData.Model;
+import java.util.Random;
+
 public class Main {
+
     public static void main(String[] args) {
+        for (int i = 0; i < 30; i++) {
+    addCar();
+        }
+    }
 
     public static void addCar() {
         Random random = new Random();

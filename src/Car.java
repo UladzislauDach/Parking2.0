@@ -20,9 +20,11 @@ public class Car {
         this.weight = weight;
     }
 
+
     public int getWeight() {
         return weight;
     }
+
     public boolean isTrailer() {
         return trailer;
     }

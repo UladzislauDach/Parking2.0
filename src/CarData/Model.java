@@ -1,9 +1,9 @@
 package CarData;
 
 public enum  Model {
+    KIA,
     AUDI,
     MAZDA,
-    VW,
-    PEUGEOT,
+    FORD,
     HONDA
 }
