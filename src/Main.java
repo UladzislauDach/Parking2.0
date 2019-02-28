@@ -19,6 +19,7 @@ public class Main {
                 "6 - количество авто с автоматом\n" +
                 "7 - автомобили с одинаковой маркой и цветом\n" +
                 "8 - отсортировать список авто по марке\n" +
+                "9 - изменить количество парковочных мест\n" +
                 "Для выхода введите любое другое число");
 
         Scanner sc2 = new Scanner(System.in);
@@ -137,6 +138,6 @@ public class Main {
 
     private static void changeNumberPlaces(int a) {
         parking.setNumberPlaces(parking.getNumberPlaces() + a);
-        System.out.println("Количество свободных парковочных мест измененио на " + a + " мест");
+        System.out.println("Количество парковочных мест измененио на " + a + " мест");
     }
 }
