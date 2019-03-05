@@ -1,4 +1,4 @@
-package CarData;
+package cars.data;
 
 public enum  Model {
     KIA,

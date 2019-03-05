@@ -1,5 +1,7 @@
-import CarData.Colour;
-import CarData.GearBox;
+import cars.Car;
+import cars.data.Colour;
+import cars.data.GearBox;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -8,14 +10,14 @@ class Parking {
     private int numberPlaces = 30;
     private List<Car> carList = new ArrayList<>();
 
-    void printCar() {
+    public void printCar() {
         for (Car car : carList) {
             System.out.println(car.toString());
         }
     }
 
-    void addCar(Car car) {
-        if (filterCar(car)) {
+    public void addCar(Car car) {
+        if (validationCar(car)) {
             carList.add(car);
             numberPlaces = numberPlaces - 1;
             System.out.println(car.toString() + " приехал на стоянку" +
@@ -24,61 +26,63 @@ class Parking {
                 " Свободных мест : " + numberPlaces);
     }
 
-    private boolean filterCar(Car car) {
+    private boolean validationCar(Car car) {
         return !car.isTrailer() && car.getWeight() <= 3000 && numberPlaces > 0;
     }
 
-    void deleteAuto() {
+    public  void deleteAuto() {
         if (carList.size() <= 0) {
             System.out.println("Нет авто на парковке");
         } else {
             Random random = new Random();
             int i = random.nextInt(carList.size());
-            System.out.println(carList.get(i).toString() + " уехал с парковки" +
-                    " Свободных мест : " + (numberPlaces + 1));
-            carList.remove(i);
+            Car car = carList.get(i);
+            carList.remove(car);
             numberPlaces = numberPlaces + 1;
+            System.out.println(car.toString() + " уехал с парковки" +
+                    " Свободных мест : " + (numberPlaces));
+
         }
     }
 
-    void numberOfWhiteCar() {
-        int caunt = 0;
+    public  void numberOfWhiteCar() {
+        int count = 0;
         for (Car car : carList) {
             if (car.getColour() == Colour.WHITE) {
-                caunt++;
+                count++;
             }
         }
-        System.out.println("Количество белых авто на парковке: " + caunt);
+        System.out.println("Количество белых авто на парковке: " + count);
     }
 
-    void numberOfAutomatCar() {
-        int caunt = 0;
+    public  void numberOfAutomatCar() {
+        int count = 0;
         for (Car car : carList) {
             if (car.getGearBox() == GearBox.AUTOMAT) {
-                caunt++;
+                count++;
             }
         }
-        System.out.println("Количество авто с автоматической КПП на парковке: " + caunt);
+        System.out.println("Количество авто с автоматической КПП на парковке: " + count);
     }
 
-    void sameAuto() {
+    public  void sameAuto() {
         for (Car car : carList) {
-            int caunt = 0;
+            int count = 0;
             for (Car car1 : carList) {
                 if (car.getModel() == car1.getModel() && car.getColour() == car1.getColour()) {
-                    caunt++;
+                    count++;
                 }
             }
-            if (caunt > 1)
+            if (count > 1)
                 System.out.println("Авто " + car.toString() + " имеет похожй авто");
         }
     }
 
-    void sortListAuto() {
+    public  void sortListAuto() {
         carList.sort(Car::compareTo);
     }
 
-    void changeNumberPlaces(int a) {
+    public  void changeNumberPlaces(int a) {
         numberPlaces = numberPlaces + a;
         System.out.println("Количество парковочных мест увеличено на " + a + " мест \n" +
                 "Свободных мест : " + numberPlaces);

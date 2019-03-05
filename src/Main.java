@@ -1,6 +1,8 @@
-import CarData.Colour;
-import CarData.GearBox;
-import CarData.Model;
+import cars.*;
+import cars.data.Colour;
+import cars.data.GearBox;
+import cars.data.Model;
+
 import java.util.Random;
 import java.util.Scanner;
 
@@ -66,12 +68,14 @@ public class Main {
     }
 
     private static Car generateCar() {
+        final boolean[] trailers = {true, false, false, false, false};
+        final int[] weights = {2300, 2500, 2800, 2900, 3500};
         Random random = new Random();
         return new Car(
                 Model.values()[random.nextInt(Model.values().length)],
                 GearBox.values()[random.nextInt(GearBox.values().length)],
                 Colour.values()[random.nextInt(Colour.values().length)],
-                Car.trailers[random.nextInt(Car.trailers.length)],
-                Car.weights[random.nextInt(Car.weights.length)]);
+                trailers[random.nextInt(trailers.length)],
+                weights[random.nextInt(weights.length)]);
     }
 }
