@@ -3,8 +3,12 @@ import cars.data.Colour;
 import cars.data.GearBox;
 import cars.data.Model;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
+import java.util.regex.Pattern;
 
 public class Main {
     private static Parking parking = new Parking();
@@ -21,10 +25,11 @@ public class Main {
                 "7 - автомобили с одинаковой маркой и цветом\n" +
                 "8 - отсортировать список авто по марке\n" +
                 "9 - изменить количество парковочных мест\n" +
+                "10 - загрузить список авто из файла\n" +
                 "Для выхода введите любое другое число");
 
         Scanner sc2 = new Scanner(System.in);
-        while (chose > 0 && chose < 10) {
+        while (chose > 0 && chose < 11) {
             chose = sc2.nextInt();
             switch (chose) {
                 case 1:
@@ -60,6 +65,10 @@ public class Main {
                     int a = sc.nextInt();
                     parking.changeNumberPlaces(a);
                     break;
+                case 10:
+                    parking.addCar(getCarsWithFile("cars.txt"));
+
+                    break;
                 default:
                     System.out.println("До свидания!");
                     break;
@@ -77,5 +86,23 @@ public class Main {
                 Colour.values()[random.nextInt(Colour.values().length)],
                 trailers[random.nextInt(trailers.length)],
                 weights[random.nextInt(weights.length)]);
+    }
+
+    private static ArrayList<Car> getCarsWithFile(String fileName) {
+        ArrayList<Car> carList = new ArrayList();
+        try {
+            FileInputStream fis = new FileInputStream(fileName);
+            Scanner sc = new Scanner(fis);
+            while (sc.hasNextLine()) {
+                String dataOfOneCar = sc.nextLine();
+                Pattern pattern = Pattern.compile(";");
+                String[] carInfo = pattern.split(dataOfOneCar);
+                carList.add(new Car(Model.valueOf(carInfo[0]), GearBox.valueOf(carInfo[1]), Colour.valueOf(carInfo[2]),
+                        Boolean.valueOf(carInfo[3]), Integer.valueOf(carInfo[4])));
+            }
+        } catch (FileNotFoundException | IllegalArgumentException e) {
+            System.out.println("файл не существует / некорректные данные");
+        }
+        return carList;
     }
 }
