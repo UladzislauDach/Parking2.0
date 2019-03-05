@@ -1,18 +1,17 @@
-import CarData.Colour;
-import CarData.GearBox;
-import CarData.Model;
+package cars;
+
+import cars.data.Colour;
+import cars.data.GearBox;
+import cars.data.Model;
 
 public class Car implements Comparable<Car> {
-    static boolean trailers[] = {true, false, false, false, false};
-    static int weights[] = {2300, 2500, 2800, 2900, 3500};
-
     private Model model;
     private GearBox gearBox;
     private Colour colour;
     private boolean trailer;
     private int weight;
 
-     Car(Model model, GearBox gearBox, Colour colour, boolean trailer, int weight) {
+    public Car(Model model, GearBox gearBox, Colour colour, boolean trailer, int weight) {
         this.model = model;
         this.gearBox = gearBox;
         this.colour = colour;
@@ -21,23 +20,23 @@ public class Car implements Comparable<Car> {
     }
 
 
-    Model getModel() {
+     public Model getModel() {
         return model;
     }
 
-    GearBox getGearBox() {
+    public GearBox getGearBox() {
         return gearBox;
     }
 
-    Colour getColour() {
+    public Colour getColour() {
         return colour;
     }
 
-    int getWeight() {
+    public int getWeight() {
         return weight;
     }
 
-    boolean isTrailer() {
+    public boolean isTrailer() {
         return trailer;
     }
 
