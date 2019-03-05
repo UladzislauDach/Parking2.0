@@ -20,7 +20,7 @@ public class Car implements Comparable<Car> {
     }
 
 
-     public Model getModel() {
+    public Model getModel() {
         return model;
     }
 
